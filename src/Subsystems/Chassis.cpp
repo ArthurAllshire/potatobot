@@ -3,11 +3,10 @@
 
 Chassis::Chassis() : Subsystem("Chassis")
 {
-    this->motor_a = new CANTalon(MOTOR_A_ID);
-    this->motor_b = new CANTalon(MOTOR_B_ID);
-    this->motor_c = new CANTalon(MOTOR_C_ID);
-    this->motor_d = new CANTalon(MOTOR_D_ID);
-    this->motors={motor_a, motor_b, motor_c, motor_d};
+    motors[0] = new CANTalon(MOTOR_A_ID);
+    motors[1] = new CANTalon(MOTOR_B_ID);
+    motors[2] = new CANTalon(MOTOR_C_ID);
+    motors[3] = new CANTalon(MOTOR_D_ID);
 }
 
 void Chassis::InitDefaultCommand()
@@ -19,7 +18,7 @@ void Chassis::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Drive(double vX, double vZ, double throttle) {
+void Chassis::Drive(double vX, double vZ, double throttle) {
     double motor_values[4] = {0.0, 0.0, 0.0, 0.0}; // A, B, C, D
 
     motor_values[0] = vX * 1.0 - vZ * 1.0;
@@ -35,6 +34,6 @@ void Drive(double vX, double vZ, double throttle) {
 
     for(int x = 0; x<4; x++){
         motor_values[x]/=max;
-        this->motors[x]->Set(motor_values[x])
+        motors[x]->Set(motor_values[x]);
     }
 }
