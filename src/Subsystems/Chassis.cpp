@@ -1,6 +1,8 @@
 #include "Chassis.h"
 #include "../RobotMap.h"
 
+#include <Commands/DriveFromJoystick.h>
+
 Chassis::Chassis() : Subsystem("Chassis")
 {
     motors[0] = new CANTalon(MOTOR_A_ID);
@@ -12,7 +14,7 @@ Chassis::Chassis() : Subsystem("Chassis")
 void Chassis::InitDefaultCommand()
 {
     // Set the default command for a subsystem here.
-    SetDefaultCommand(new OmniDrive());
+    SetDefaultCommand(new DriveFromJoystick());
 }
 
 // Put methods for controlling this subsystem

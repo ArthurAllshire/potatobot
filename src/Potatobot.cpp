@@ -1,13 +1,19 @@
 #include <Potatobot.h>
 #include "WPILib.h"
 #include "Commands/ExampleCommand.h"
+#include "Commands/DriveFromJoystick.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* Potatobot::exampleSubsystem = NULL;
+Chassis* Potatobot::chassis=NULL;
 OI* Potatobot::oi = NULL;
+
 
 void Potatobot::RobotInit()
 {
+    // intialize subsystem objects here
+    chassis = new Chassis();
+    oi = new OI();
     autonomousCommand = new ExampleCommand();
     lw = LiveWindow::GetInstance();
 

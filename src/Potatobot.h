@@ -5,12 +5,14 @@
 #include "Commands/ExampleCommand.h"
 
 #include "Subsystems/ExampleSubsystem.h"
+#include "Subsystems/Chassis.h"
 #include "OI.h"
 
 class Potatobot: public IterativeRobot {
 public:
     static OI* oi;
     static ExampleSubsystem* exampleSubsystem;
+    static Chassis* chassis;
 
 private:
     Command *autonomousCommand;
